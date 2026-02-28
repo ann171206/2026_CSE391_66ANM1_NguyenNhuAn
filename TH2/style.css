@@ -2,6 +2,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 /* TODO 2: Type selector for body */
@@ -19,10 +20,17 @@ body {
 }
 
 /* TODO 4: Class selector for .nav-link */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 15px;
+}
 .nav-link {
     color: #333;
     text-decoration: none;
     padding: 10px 15px;
+    
 }
 
 /* TODO 5: Group selector for h1, h2, h3 */
@@ -50,6 +58,7 @@ a:hover {
     /* TODO: Căn giữa, margin trên dưới, max-width */
     width: 500px; /* Hộp sẽ rộng đúng 300px bất kể padding hay border */
     padding: 20px;
+    flex-wrap: wrap;
     display: flex;
     gap: 20px;              /* khoảng cách giữa các card */
     padding: 20px;
@@ -64,7 +73,7 @@ a:hover {
        margin: 10px;
        background: white;
        border-radius: 8px;
-       flex: 1;                /* 3 card chia đều 1 hàng */
+       flex : 1;                /* 3 card chia đều 1 hàng */
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
@@ -80,4 +89,80 @@ a:hover {
 
 .btn:hover {
     background: #0056b3;
+}
+/* ===== MOBILE VIEW ===== */
+@media (max-width: 768px) {
+
+    .posts {
+        flex-direction: column;
+    }
+
+    .card {
+        flex: 1 1 100%;
+    }
+}
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+.item {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 150px;
+    font-size: 2rem;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: 1fr;
+    }
+}
+/* Header sticky */
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* hiệu ứng nổi */
+}
+
+/* Nút Scroll to Top */
+.scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+
+    width: 50px;
+    height: 50px;
+    background: #007bff;
+    color: white;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    font-size: 24px;
+}
+
+/* Hover effect */
+.scroll-top:hover {
+    background: #0056b3;
+    transform: scale(1.1);
+    transition: 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
 }
