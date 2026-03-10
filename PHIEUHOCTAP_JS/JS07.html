@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JS Practice</title>
+
+<style>
+body{
+    font-family: Arial;
+    padding:40px;
+}
+
+button{
+    margin:10px 0;
+}
+
+ul{
+    margin-top:10px;
+}
+
+li{
+    cursor:pointer;
+}
+
+.box{
+    padding:10px;
+    border:1px solid black;
+    margin-top:10px;
+}
+</style>
+
+</head>
+<body>
+
+<h2>EVENTS</h2>
+
+<button id="clickBtn">Click Me</button>
+
+<form id="myForm">
+<input type="text" placeholder="Nhập gì đó">
+<button type="submit">Submit</button>
+</form>
+
+<div id="outer" class="box">
+Outer
+<div id="middle" class="box">
+Middle
+<div id="inner" class="box">
+Inner (click me)
+</div>
+</div>
+</div>
+
+<ul id="list">
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ul>
+
+<hr>
+
+<h2>PROMISES</h2>
+
+<button id="promiseBtn">Run Promise</button>
+
+<hr>
+
+<h2>ASYNC / AWAIT & FETCH</h2>
+
+<button id="fetchBtn">Load Users</button>
+<ul id="users"></ul>
+
+<script>
+
+// ================= EVENTS =================
+
+// 1 click event
+document.getElementById("clickBtn").addEventListener("click",()=>{
+    alert("Button clicked")
+})
+
+// 2 keydown
+document.addEventListener("keydown",(e)=>{
+    console.log("Key pressed:",e.key)
+})
+
+// 3 submit form
+document.getElementById("myForm").addEventListener("submit",(e)=>{
+    e.preventDefault()
+    alert("Form submitted but page not reload")
+})
+
+// 4 event bubbling
+document.getElementById("outer").addEventListener("click",()=>{
+    console.log("Outer clicked")
+})
+
+document.getElementById("middle").addEventListener("click",()=>{
+    console.log("Middle clicked")
+})
+
+document.getElementById("inner").addEventListener("click",()=>{
+    console.log("Inner clicked")
+})
+
+// 5 event delegation
+document.getElementById("list").addEventListener("click",(e)=>{
+    if(e.target.tagName==="LI"){
+        alert("Bạn click: "+e.target.textContent)
+    }
+})
+
+
+// ================= PROMISE =================
+
+// 1 Promise delay 2s
+function fakeAPI(){
+    return new Promise((resolve,reject)=>{
+        setTimeout(()=>{
+            resolve("Data loaded")
+        },2000)
+    })
+}
+
+// run promise
+document.getElementById("promiseBtn").addEventListener("click",()=>{
+
+fakeAPI()
+
+.then(data=>{
+    console.log(data)
+    return "Step 2"
+})
+
+.then(step=>{
+    console.log(step)
+    return "Step 3"
+})
+
+.then(step=>{
+    console.log(step)
+})
+
+.catch(err=>{
+    console.log("Error:",err)
+})
+
+})
+
+
+// ================= ASYNC AWAIT =================
+
+async function loadUsers(){
+
+try{
+
+let response = await fetch("https://jsonplaceholder.typicode.com/users")
+
+let users = await response.json()
+
+const ul = document.getElementById("users")
+
+ul.innerHTML=""
+
+users.forEach(user=>{
+
+const li = document.createElement("li")
+
+li.textContent = user.name
+
+ul.appendChild(li)
+
+})
+
+}catch(error){
+
+console.log("Fetch error:",error)
+
+}
+
+}
+
+document.getElementById("fetchBtn").addEventListener("click",loadUsers)
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Selection Exercise</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        .container { border: 1px solid #ccc; padding: 10px; margin: 10px 0; }
+        .item { background: #f0f0f0; padding: 5px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <!-- Cấu trúc HTML đơn giản với id và class -->
+    <div id="main-container" class="container">
+        <h1>DOM Selection Exercise</h1>
+        
+        <div id="header" class="container">
+            <h2>Header</h2>
+        </div>
+        
+        <!-- Nhiều phần tử cùng class để sử dụng querySelectorAll -->
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+        
+        <p id="status-message" class="item">Status message here</p>
+    </div>
+
+    <script>
+        console.log("=== DOM Selection Exercise ===\n");
+
+        // 1. Sử dụng querySelector để chọn phần tử đầu tiên
+        console.log("1. querySelector('.item'):");
+        const firstItem = document.querySelector('.item');
+        console.log(firstItem);
+        console.log("Nội dung:", firstItem.textContent, "\n");
+
+        // 2. Sử dụng querySelectorAll để lấy danh sách các phần tử
+        console.log("2. querySelectorAll('.item'):");
+        const allItems = document.querySelectorAll('.item');
+        console.log("Số lượng phần tử:", allItems.length);
+        console.log("Danh sách:", allItems);
+        allItems.forEach((item, index) => {
+            console.log(`  Item ${index + 1}: ${item.textContent}`);
+        });
+        console.log();
+
+        // 3. Sử dụng getElementById để truy cập trực tiếp qua ID
+        console.log("3. getElementById('main-container'):");
+        const mainContainer = document.getElementById('main-container');
+        console.log(mainContainer);
+        console.log("Class:", mainContainer.className, "\n");
+
+        // 4. Kiểm tra thêm
+        console.log("4. Thêm các kiểm tra khác:");
+        const header = document.getElementById('header');
+        console.log("Header element:", header);
+        
+        const statusMsg = document.getElementById('status-message');
+        console.log("Status message:", statusMsg.textContent);
+        
+        console.log("\n=== Kết thúc ===");
+    </script>
+
+    <!-- HTML list for appendChild exercise -->
+    <div id="list-container" class="container">
+        <h3>Dynamic List</h3>
+        <ul id="my-list">
+            <li>First item</li>
+            <li>Second item</li>
+        </ul>
+    </div>
+
+    <script>
+        // DOM Manipulation Exercise
+
+        // 1. Thay đổi văn bản tiêu đề bằng textContent
+        const heading = document.querySelector('h1');
+        heading.textContent = 'DOM Manipulation Exercise';
+
+        // 2. Chèn thêm mã HTML vào một div bằng innerHTML
+        const container = document.getElementById('list-container');
+        container.innerHTML += '<p>This content was added with innerHTML</p>';
+
+        // 3. Sử dụng createElement để tạo một thẻ <li> mới
+        const newItem = document.createElement('li');
+        newItem.textContent = 'Third item (created dynamically)';
+
+        // 4. Append phần tử vừa tạo vào danh sách <ul>
+        const list = document.getElementById('my-list');
+        list.appendChild(newItem);
+
+        // 5. Xóa một phần tử bằng remove()
+        const itemsToRemove = document.querySelectorAll('.item');
+        if (itemsToRemove.length > 0) {
+            itemsToRemove[0].remove();
+        }
+
+        console.log("DOM manipulation completed!");
+    </script>
+</body>
+</html>

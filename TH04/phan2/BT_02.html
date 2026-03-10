@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 2.1 – Form Đăng Ký Tài Khoản</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 500px; margin: 40px auto; padding: 0 16px; }
+    h1 { font-size: 1.4rem; margin-bottom: 4px; }
+    p.sub { color: #666; margin-bottom: 20px; font-size: 0.9rem; }
+
+    .form-group { margin-bottom: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    label { display: block; font-size: 0.82rem; font-weight: 600; margin-bottom: 4px; }
+    input[type="text"], input[type="email"], input[type="tel"], input[type="password"] {
+      width: 100%; padding: 8px 10px; border: 1.5px solid #ccc;
+      border-radius: 6px; font-size: 0.9rem; box-sizing: border-box;
+    }
+    input.valid   { border-color: #22c55e; }
+    input.invalid { border-color: #ef4444; }
+
+    .pw-wrap { position: relative; }
+    .pw-wrap input { padding-right: 36px; }
+    .pw-toggle {
+      position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: pointer; font-size: 1rem;
+    }
+
+    .radio-group { display: flex; gap: 10px; flex-wrap: wrap; }
+    .radio-group label {
+      font-weight: 400; display: flex; align-items: center; gap: 4px;
+      border: 1.5px solid #ccc; border-radius: 6px; padding: 5px 12px; cursor: pointer;
+    }
+    .radio-group input[type="radio"] { display: none; }
+    .radio-group label:has(input:checked) { border-color: #6366f1; background: #eef2ff; color: #4338ca; }
+
+    .checkbox-label {
+      display: flex; align-items: flex-start; gap: 8px;
+      font-size: 0.85rem; color: #555; font-weight: 400;
+    }
+    .checkbox-label input { margin-top: 2px; }
+
+    .error-msg { color: #ef4444; font-size: 0.75rem; margin-top: 4px; display: none; }
+    .error-msg.show { display: block; }
+
+    hr { border: none; border-top: 1px solid #e5e7eb; margin: 16px 0 10px; }
+
+    button[type="submit"] {
+      width: 100%; padding: 10px; background: #6366f1; color: white;
+      border: none; border-radius: 6px; font-size: 0.95rem; font-weight: 600;
+      cursor: pointer; margin-top: 6px;
+    }
+    button[type="submit"]:hover { background: #4f46e5; }
+
+    #successScreen { display: none; text-align: center; padding: 40px 0; }
+    #successScreen.show { display: block; }
+    #successScreen h2 { color: #22c55e; }
+  </style>
+</head>
+<body>
+
+  <div id="formSection">
+    <h1>Tạo tài khoản</h1>
+    <p class="sub">Điền đầy đủ thông tin bên dưới để đăng ký.</p>
+
+    <form id="registerForm" novalidate>
+
+      <div class="form-group">
+        <label for="fullname">Họ và tên</label>
+        <input type="text" id="fullname" placeholder="Nguyễn Văn An">
+        <div class="error-msg" id="err-fullname"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="example@email.com">
+        <div class="error-msg" id="err-email"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Số điện thoại</label>
+        <input type="tel" id="phone" placeholder="0912345678">
+        <div class="error-msg" id="err-phone"></div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <div class="pw-wrap">
+            <input type="password" id="password" placeholder="Tối thiểu 8 ký tự">
+            <button type="button" class="pw-toggle" data-target="password">👁</button>
+          </div>
+          <div class="error-msg" id="err-password"></div>
+        </div>
+        <div class="form-group">
+          <label for="confirm">Xác nhận mật khẩu</label>
+          <div class="pw-wrap">
+            <input type="password" id="confirm" placeholder="Nhập lại mật khẩu">
+            <button type="button" class="pw-toggle" data-target="confirm">👁</button>
+          </div>
+          <div class="error-msg" id="err-confirm"></div>
+        </div>
+      </div>
+
+      <hr>
+      <div class="form-group">
+        <label>Giới tính</label>
+        <div class="radio-group">
+          <label><input type="radio" name="gender" value="male"> Nam</label>
+          <label><input type="radio" name="gender" value="female"> Nữ</label>
+          <label><input type="radio" name="gender" value="other"> Khác</label>
+        </div>
+        <div class="error-msg" id="err-gender"></div>
+      </div>
+
+      <hr>
+      <div class="form-group">
+        <label class="checkbox-label">
+          <input type="checkbox" id="terms">
+          Tôi đồng ý với Điều khoản dịch vụ và Chính sách bảo mật.
+        </label>
+        <div class="error-msg" id="err-terms"></div>
+      </div>
+
+      <button type="submit">Tạo tài khoản →</button>
+    </form>
+  </div>
+
+  <div id="successScreen">
+    <div style="font-size:3rem">🎉</div>
+    <h2>Đăng ký thành công!</h2>
+    <p>Chào mừng, <strong id="successName"></strong>!</p>
+  </div>
+
+  <script src="JS2.js"></script>
+</body>
+</html>

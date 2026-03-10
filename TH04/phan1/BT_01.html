@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bảng điểm sinh viên</title>
+<style>
+/* CSS cơ bản cho trang */
+body{
+    font-family: Arial;
+    padding:40px;
+}
+
+/* style input và button */
+input,button{
+    padding:6px;
+    margin:5px;
+}
+
+/* bảng */
+table{
+    border-collapse: collapse;
+    width:600px;
+    margin-top:20px;
+}
+
+/* ô trong bảng */
+th,td{
+    border:1px solid #ccc;
+    padding:8px;
+    text-align:center;
+}
+
+</style>
+</head>
+<body>
+
+<h2>Quản lý điểm sinh viên</h2>
+
+<!-- Ô nhập họ tên -->
+<input id="nameInput" type="text" placeholder="Nhập họ tên">
+
+<!-- Ô nhập điểm -->
+<input id="scoreInput" type="number" placeholder="Điểm" min="0" max="10" step="1">
+
+<!-- Nút thêm -->
+<button id="addBtn">Thêm</button>
+<!-- Ô tìm kiếm -->
+<input id="searchInput" placeholder="Tìm kiếm tên">
+
+<select id="filterRank">
+<option value="all">Tất cả</option>
+<option value="Giỏi">Giỏi</option>
+<option value="Khá">Khá</option>
+<option value="Trung bình">Trung bình</option>
+<option value="Yếu">Yếu</option>
+</select>
+
+<button id="filterBtn">Xác nhận lọc</button>
+
+<br><br>
+
+<table border="1">
+<thead>
+<tr>
+<th>STT</th>
+<th>Họ tên</th>
+<th>Điểm</th>
+<th>Xếp loại</th>
+<th>Thao tác</th>
+</tr>
+</thead>
+
+<!-- tbody để JS thêm dòng -->
+<tbody id="studentBody"></tbody>
+
+</table>
+
+<!-- khu vực thống kê -->
+<p id="stats"></p>
+
+<script src="JS1.js"></script>
+</body>
+
+</html>

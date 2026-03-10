@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DOM Practice</title>
+
+<style>
+body{
+    font-family: Arial;
+    padding:40px;
+}
+
+.active{
+    background-color: lightblue;
+}
+
+.highlight{
+    color:red;
+    font-weight:bold;
+}
+
+img{
+    width:150px;
+    display:block;
+    margin-top:10px;
+}
+</style>
+
+</head>
+<body>
+
+<h1 id="title">Tiêu đề ban đầu</h1>
+
+<p class="text">Đoạn văn 1</p>
+<p class="text">Đoạn văn 2</p>
+
+<ul id="list">
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
+
+<img id="avatar" src="https://picsum.photos/200">
+
+<br>
+
+<button id="btn">Click Me</button>
+<p id="message">Chưa click</p>
+
+<script>
+
+console.log("===== DOM SELECT =====")
+
+// querySelector
+const title = document.querySelector("#title")
+
+// querySelectorAll
+const texts = document.querySelectorAll(".text")
+
+// getElementById
+const titleById = document.getElementById("title")
+
+console.log(title)
+console.log(texts)
+console.log(titleById)
+
+
+
+console.log("===== MODIFY ELEMENT =====")
+
+// đổi text
+title.textContent = "Tiêu đề đã thay đổi"
+
+// thêm HTML
+title.innerHTML = "<b>Tiêu đề in đậm</b>"
+
+// tạo li mới
+const newLi = document.createElement("li")
+newLi.textContent = "Item mới"
+
+// append vào list
+document.querySelector("#list").append(newLi)
+
+// xóa sau 3s
+setTimeout(()=>{
+    newLi.remove()
+},3000)
+
+
+
+console.log("===== ATTRIBUTES & CLASS =====")
+
+const img = document.querySelector("#avatar")
+
+// đổi src
+img.src = "https://picsum.photos/300"
+
+// thêm class
+img.classList.add("highlight")
+
+// toggle class sau 2s
+setTimeout(()=>{
+    img.classList.toggle("highlight")
+},2000)
+
+// kiểm tra class
+console.log(img.classList.contains("highlight"))
+
+
+
+console.log("===== EVENT LISTENER =====")
+
+const btn = document.querySelector("#btn")
+const message = document.querySelector("#message")
+
+// click
+btn.addEventListener("click", function(){
+    message.textContent = "Bạn vừa click nút!"
+    btn.classList.toggle("active")
+})
+
+// mouseenter
+btn.addEventListener("mouseenter", function(){
+    message.textContent = "Chuột đang vào nút"
+})
+
+// mouseleave
+btn.addEventListener("mouseleave", function(){
+    message.textContent = "Chuột rời khỏi nút"
+})
+
+</script>
+
+</body>
+</html>
