@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="stylecf.css">
+  <title>Conference Hub</title>
+</head>
+<body>
+
+<header>
+  <div class="left">
+    <strong>Conference Hub</strong>
+    <a href="#">Trang chủ</a>
+    <a href="#">Liên hệ</a>
+  </div>
+
+  <div class="search">
+    <input type="text" id="searchInput" placeholder="Tìm kiếm...">
+    <button id="btnSearch">Tìm</button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="header">
+    <h2>Conference Hub</h2>
+    <button id="btnAdd" class="btn-primary">+ Add new</button>
+  </div>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Conference Name</th>
+        <th>Speaker</th>
+        <th>Email</th>
+        <th>Date</th>
+        <th>Location</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="employeeTable"></tbody>
+  </table>
+</main>
+
+<!-- MODAL -->
+<div id="popup" class="modal hidden">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>+ Add new</h3>
+      <span id="btnClose">×</span>
+    </div>
+
+    <form id="employeeForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Conference Name</label>
+          <input type="text" id="conferencename">
+          <small class="error"></small>
+        </div>
+
+        <div class="form-group">
+          <label>Speaker</label>
+          <input type="text" id="speaker">
+          <small class="error"></small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email">
+          <small class="error"></small>
+        </div>
+
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" id="date">
+          <small class="error"></small>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Location</label>
+          <input type="text" id="location">
+          <small class="error"></small>
+        </div>
+      </div>
+
+      <div class="form-action">
+        <button type="submit" class="btn-success">Lưu</button>
+        <button type="button" id="btnCancel">Hủy</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
